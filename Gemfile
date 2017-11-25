@@ -9,6 +9,10 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.6'
 end
 
+gem 'factory_bot_rails'
+
+gem 'shoulda'
+
 gem 'faker', :git => 'git://github.com/stympy/faker.git', :branch => 'master'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
