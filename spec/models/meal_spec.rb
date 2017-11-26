@@ -17,4 +17,12 @@ RSpec.describe Meal, type: :model do
     subject.name = "Sushi"
     expect(subject).to_not be_valid
   end
+
+  describe "Associations" do
+    it "has many order_item" do
+      assc = described_class.reflect_on_association(:order_item)
+      expect(assc.macro).to eq :has_many
+    end
+  end
+
 end

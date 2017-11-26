@@ -17,4 +17,17 @@ RSpec.describe DeliveryOrder, type: :model do
     subject.order_id = "G0010"
     expect(subject).to_not be_valid
   end
+
+  describe "Associations" do
+    it "has many order_item" do
+      assc = described_class.reflect_on_association(:order_item)
+      expect(assc.macro).to eq :has_many
+    end
+
+    it "has many meal" do
+      assc = described_class.reflect_on_association(:meal)
+      expect(assc.macro).to eq :has_many
+    end
+  end
+
 end

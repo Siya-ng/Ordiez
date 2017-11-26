@@ -32,4 +32,16 @@ RSpec.describe OrderItem, type: :model do
     subject.quantity = 2
     expect(subject).to_not be_valid
   end
+
+  describe "Associations" do
+    it "belong to delivery_order" do
+      assc = described_class.reflect_on_association(:delivery_order)
+      expect(assc.macro).to eq :belongs_to
+    end
+
+    it "belong to meal" do
+      assc = described_class.reflect_on_association(:meal)
+      expect(assc.macro).to eq :belongs_to
+    end
+  end
 end
