@@ -11,10 +11,12 @@ RSpec.describe OrdersController, type: :controller do
       delivery_order = DeliveryOrder.all[0]
       get :index
 
+      delivery_period_lower_bound = delivery_order.serving_datetime.strftime("%I:%M")
+      delivery_period_upper_bound = (delivery_order.serving_datetime + 30.minutes).strftime("%I:%M%p")
       first_delivery_orders = {
         order_id: delivery_order.order_id,
         delivery_date: delivery_order.serving_datetime.to_date,
-        delivery_time: delivery_order.serving_datetime.strftime("%I:%M%p")
+        delivery_time: "#{delivery_period_lower_bound}" + "-" + "#{delivery_period_upper_bound}"
       }
 
       response_body_result = JSON.parse(response.body)
@@ -31,10 +33,12 @@ RSpec.describe OrdersController, type: :controller do
       get :index
 
       all_delivery_orders = delivery_orders.map do |delivery_order|
+        delivery_period_lower_bound = delivery_order.serving_datetime.strftime("%I:%M")
+        delivery_period_upper_bound = (delivery_order.serving_datetime + 30.minutes).strftime("%I:%M%p")
         {
           order_id: delivery_order.order_id,
           delivery_date: delivery_order.serving_datetime.to_date,
-          delivery_time: delivery_order.serving_datetime.strftime("%I:%M%p")
+          delivery_time: "#{delivery_period_lower_bound}" + "-" + "#{delivery_period_upper_bound}"
         }
       end
       response.body.should == {orders: all_delivery_orders}.to_json
@@ -54,7 +58,7 @@ RSpec.describe OrdersController, type: :controller do
 
       delivery_order = DeliveryOrder.find_by(order_id: order_id)
       delivery_order_infor = { order: delivery_order.show_infor }
-
+      
       get :show, params: { order_id: order_id  }
 
       response.body.should == delivery_order_infor.to_json
