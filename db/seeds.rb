@@ -37,8 +37,8 @@ end
   new_order_item = OrderItem.new
   new_order_item.delivery_order_id = DeliveryOrder.all.sample.id
   new_order_item.meal_id = Meal.all.sample.id
-  quantity = rand(1..9)
+  quantity = rand(1..5)
   new_order_item.quantity = quantity
-  new_order_item.unit_price = rand(10..39)
+  new_order_item.unit_price = rand(20..399) * 10
   new_order_item.save
 end
