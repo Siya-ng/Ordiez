@@ -4,10 +4,6 @@ class DeliveryOrder < ApplicationRecord
 
   has_many :meal, through: :order_item
 
-  def printY
-    print "y"
-  end
-
   def self.all_infor
     all_delivery_orders_infor = DeliveryOrder.all.map do |delivery_order|
       {
@@ -18,7 +14,6 @@ class DeliveryOrder < ApplicationRecord
     end
     return all_delivery_orders_infor
   end
-
 
   def show_infor
     all_order_items = self.order_item

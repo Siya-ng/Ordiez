@@ -10,13 +10,8 @@ class OrdersController < ApplicationController
 
     delivery_order = DeliveryOrder.find_by(order_id: order_id)
     @delivery_order_infor = { order: delivery_order.show_infor }
-    # y =  @delivery_order_infor.to_json
-    # print y
-    # print JSON.parse(y)
     render json: @delivery_order_infor
 
-
-    # render json: @delivery_order, include: 'order_item'
   end
 
 end
