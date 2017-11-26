@@ -7,7 +7,7 @@ RSpec.describe OrdersController, type: :controller do
       expect(response.status).to eq(200)
     end
 
-    it "contain correct inforation" do
+    it "contain correct individual information" do
       delivery_order = DeliveryOrder.all[0]
       get :index
 
@@ -19,6 +19,7 @@ RSpec.describe OrdersController, type: :controller do
 
       response_body_result = JSON.parse(response.body)
       first_response_body_result = response_body_result["orders"][0]
+      # convert both to json for comparsion
       json_first_response_body_result = first_response_body_result.to_json
       json_first_delivery_orders = first_delivery_orders.to_json
 
@@ -47,22 +48,6 @@ RSpec.describe OrdersController, type: :controller do
       expect(response.status).to eq(200)
     end
 
-    it "contain correct inforation" do
-      order_id  = DeliveryOrder.all.sample.order_id
-      delivery_order = DeliveryOrder.find_by(order_id: order_id).show_infor
-
-      get :show, params: { order_id: order_id  }
-    
-      response_body_result = JSON.parse(response.body)["order"]
-      # to get the same date format
-      modify_delivery_order = JSON.parse(delivery_order.to_json)
-
-      expect(response_body_result["order_id"]).to eq(modify_delivery_order["order_id"])
-      expect(response_body_result["delivery_date"]).to eq(modify_delivery_order["delivery_date"])
-      expect(response_body_result["delivery_time"]).to eq(modify_delivery_order["delivery_time"])
-      expect(response_body_result["order_items"]).to eq(modify_delivery_order["order_items"])
-    end
-
     it "should view individual orders" do
 
       order_id  = DeliveryOrder.all.sample.order_id
@@ -71,7 +56,6 @@ RSpec.describe OrdersController, type: :controller do
       delivery_order_infor = { order: delivery_order.show_infor }
 
       get :show, params: { order_id: order_id  }
-
 
       response.body.should == delivery_order_infor.to_json
     end

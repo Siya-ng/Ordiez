@@ -71,7 +71,7 @@ Contains 7 tests
 ```
 $rspec spec/controllers/orders_controller_spec.rb
 ```
-Contains 6 tests
+Contains 5 tests
 
 ####  Created With:
 * ruby 2.4.2p198
