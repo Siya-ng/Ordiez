@@ -3,4 +3,5 @@ class OrderItem < ApplicationRecord
 
   belongs_to :meal
   belongs_to :delivery_order
+  has_one :feedback, as: :ratable
 end

@@ -4,11 +4,15 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
+group :development, :test do
+  gem 'factory_bot_rails'
+end
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.6'
 end
 
+gem 'rack-cors', :require => 'rack/cors'
 
 gem 'faker', :git => 'git://github.com/stympy/faker.git', :branch => 'master'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

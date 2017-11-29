@@ -28,6 +28,11 @@ RSpec.describe DeliveryOrder, type: :model do
       assc = described_class.reflect_on_association(:meal)
       expect(assc.macro).to eq :has_many
     end
+
+    it "has one feedback" do
+      assc = described_class.reflect_on_association(:feedback)
+      expect(assc.macro).to eq :has_one
+    end
   end
 
 end

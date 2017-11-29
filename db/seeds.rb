@@ -14,7 +14,7 @@ Meal.destroy_all
 5.times do |c|
   new_delivery_order = DeliveryOrder.new
   random_number = rand(100..999)
-  new_delivery_order.order_id = "G#{random_number}"
+  new_delivery_order.order_id = "GO#{random_number}"
   new_delivery_order.serving_datetime = DateTime.now + 2.hours
   new_delivery_order.save
 end
